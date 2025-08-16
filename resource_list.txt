@@ -1,0 +1,145 @@
+# aws_instance.public:
+resource "aws_instance" "public" {
+    ami                                  = "ami-0de716d6197524dd9"
+    arn                                  = "arn:aws:ec2:us-east-1:255945442255:instance/i-08a1d1e451550ce0c"
+    associate_public_ip_address          = true
+    availability_zone                    = "us-east-1a"
+    disable_api_stop                     = false
+    disable_api_termination              = false
+    ebs_optimized                        = false
+    force_destroy                        = false
+    get_password_data                    = false
+    hibernation                          = false
+    host_id                              = [90mnull[0m[0m
+    iam_instance_profile                 = [90mnull[0m[0m
+    id                                   = "i-08a1d1e451550ce0c"
+    instance_initiated_shutdown_behavior = "stop"
+    instance_lifecycle                   = [90mnull[0m[0m
+    instance_state                       = "running"
+    instance_type                        = "t2.micro"
+    ipv6_address_count                   = 0
+    ipv6_addresses                       = []
+    key_name                             = "shilpa-key-pair"
+    monitoring                           = false
+    outpost_arn                          = [90mnull[0m[0m
+    password_data                        = [90mnull[0m[0m
+    placement_group                      = [90mnull[0m[0m
+    placement_partition_number           = 0
+    primary_network_interface_id         = "eni-013e6327d2f6701e6"
+    private_dns                          = "ip-10-0-141-225.ec2.internal"
+    private_ip                           = "10.0.141.225"
+    public_dns                           = "ec2-44-192-129-189.compute-1.amazonaws.com"
+    public_ip                            = "44.192.129.189"
+    region                               = "us-east-1"
+    secondary_private_ips                = []
+    security_groups                      = []
+    source_dest_check                    = true
+    spot_instance_request_id             = [90mnull[0m[0m
+    subnet_id                            = "subnet-0a30b23b85fbc0db5"
+    tags                                 = {
+        "Name" = "shilpa-ec2"
+    }
+    tags_all                             = {
+        "Name" = "shilpa-ec2"
+    }
+    tenancy                              = "default"
+    user_data_replace_on_change          = false
+    vpc_security_group_ids               = [
+        "sg-00065c861259a0023",
+    ]
+
+    capacity_reservation_specification {
+        capacity_reservation_preference = "open"
+    }
+
+    cpu_options {
+        amd_sev_snp      = [90mnull[0m[0m
+        core_count       = 1
+        threads_per_core = 1
+    }
+
+    credit_specification {
+        cpu_credits = "standard"
+    }
+
+    enclave_options {
+        enabled = false
+    }
+
+    maintenance_options {
+        auto_recovery = "default"
+    }
+
+    metadata_options {
+        http_endpoint               = "enabled"
+        http_protocol_ipv6          = "disabled"
+        http_put_response_hop_limit = 2
+        http_tokens                 = "required"
+        instance_metadata_tags      = "disabled"
+    }
+
+    private_dns_name_options {
+        enable_resource_name_dns_a_record    = false
+        enable_resource_name_dns_aaaa_record = false
+        hostname_type                        = "ip-name"
+    }
+
+    root_block_device {
+        delete_on_termination = true
+        device_name           = "/dev/xvda"
+        encrypted             = false
+        iops                  = 3000
+        kms_key_id            = [90mnull[0m[0m
+        tags                  = {}
+        tags_all              = {}
+        throughput            = 125
+        volume_id             = "vol-0117ccf613c5994ee"
+        volume_size           = 8
+        volume_type           = "gp3"
+    }
+}
+
+# aws_security_group.allow_ssh:
+resource "aws_security_group" "allow_ssh" {
+    arn                    = "arn:aws:ec2:us-east-1:255945442255:security-group/sg-00065c861259a0023"
+    description            = "Allow SSH inbound"
+    egress                 = []
+    id                     = "sg-00065c861259a0023"
+    ingress                = [
+        {
+            cidr_blocks      = [
+                "0.0.0.0/0",
+            ]
+            description      = [90mnull[0m[0m
+            from_port        = 22
+            ipv6_cidr_blocks = []
+            prefix_list_ids  = []
+            protocol         = "tcp"
+            security_groups  = []
+            self             = false
+            to_port          = 22
+        },
+    ]
+    name                   = "shilpa-terraform-security-group"
+    name_prefix            = [90mnull[0m[0m
+    owner_id               = "255945442255"
+    region                 = "us-east-1"
+    revoke_rules_on_delete = false
+    tags                   = {}
+    tags_all               = {}
+    vpc_id                 = "vpc-037a1fde3abdbc8fc"
+}
+
+# aws_vpc_security_group_ingress_rule.allow_tls_ipv4:
+resource "aws_vpc_security_group_ingress_rule" "allow_tls_ipv4" {
+    arn                    = "arn:aws:ec2:us-east-1:255945442255:security-group-rule/sgr-0cf1ca9e7b284d9ae"
+    cidr_ipv4              = "0.0.0.0/0"
+    from_port              = 22
+    id                     = "sgr-0cf1ca9e7b284d9ae"
+    ip_protocol            = "tcp"
+    region                 = "us-east-1"
+    security_group_id      = "sg-00065c861259a0023"
+    security_group_rule_id = "sgr-0cf1ca9e7b284d9ae"
+    tags_all               = {}
+    to_port                = 22
+}

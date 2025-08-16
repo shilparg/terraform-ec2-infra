@@ -1,6 +1,6 @@
 resource "aws_instance" "public" {
   ami                         = "ami-0de716d6197524dd9" # find the AMI ID of Amazon Linux 2023  instance_type               = "t2.micro"
-  subnet_id                   = "subnet-06359335884ff6cdd"  #Public Subnet ID, e.g. subnet-xxxxxxxxxxx
+  subnet_id                   = "subnet-0a30b23b85fbc0db5"  #Public Subnet ID, e.g. subnet-xxxxxxxxxxx
   instance_type               = "t2.micro"               # ✅ Required argument
   associate_public_ip_address = true
   key_name                    = "shilpa-key-pair" #Change to your keyname, e.g. jazeel-key-pair
@@ -14,7 +14,7 @@ resource "aws_instance" "public" {
 resource "aws_security_group" "allow_ssh" {
   name        = "shilpa-terraform-security-group" #Security group name, e.g. jazeel-terraform-security-group
   description = "Allow SSH inbound"
-  vpc_id      = "vpc-00fa931fec6c3700e"  #VPC ID (Same VPC as your EC2 subnet above), E.g. vpc-xxxxxxx
+  vpc_id      = "vpc-037a1fde3abdbc8fc"  #VPC ID (Same VPC as your EC2 subnet above), E.g. vpc-xxxxxxx
 }
 
 resource "aws_vpc_security_group_ingress_rule" "allow_tls_ipv4" {
